@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidéo en plein écran</title>
+    <title>Vidéo pour mobile</title>
     <style>
         body, html {
             margin: 0;
@@ -24,9 +24,20 @@
     </style>
 </head>
 <body>
-    <video autoplay muted loop>
+    <video id="video" autoplay muted playsinline>
         <source src="site.mp4" type="video/mp4">
         Votre navigateur ne supporte pas la lecture des vidéos HTML5.
     </video>
+    <script>
+        // Sélection de la vidéo
+        const video = document.getElementById('video');
+
+        // Quand la vidéo est terminée, reste sur la dernière image
+        video.addEventListener('ended', () => {
+            video.pause(); // Met la vidéo en pause
+            video.currentTime = video.duration; // Va à la dernière image
+        });
+    </script>
 </body>
 </html>
+
